@@ -1,0 +1,137 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+    body {
+        background: url("{% static 'mysite/images/bus-bg.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .checkout-container {
+        background-color: rgba(255, 255, 255, 0.98);
+        padding: 50px 40px;
+        border-radius: 18px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        margin: 80px auto;
+        max-width: 480px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .checkout-container h1 {
+        font-weight: 800;
+        color: #2c3e50;
+        margin-bottom: 14px;
+        font-size: 32px;
+    }
+
+    .checkout-container p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .bus-icon {
+        width: 90px;
+        margin-bottom: 20px;
+        animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .amount {
+        font-size: 24px;
+        font-weight: 700;
+        color: #e67e22;
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    #rzp-button1 {
+        padding: 14px 35px;
+        font-size: 17px;
+        background: linear-gradient(to right, #2ecc71, #27ae60);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    #rzp-button1:hover {
+        background: linear-gradient(to right, #27ae60, #1abc9c);
+        box-shadow: 0 10px 30px rgba(26, 188, 156, 0.4);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+        .checkout-container {
+            margin: 60px 20px;
+            padding: 40px 20px;
+        }
+
+        .checkout-container h1 {
+            font-size: 26px;
+        }
+
+        #rzp-button1 {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="checkout-container">
+    <img src="{% static 'mysite/images/razor.png' %}" alt="Bus Icon" class="bus-icon">
+
+    <h1>Confirm Payment</h1>
+    <p>Complete your booking by paying:</p>
+    <div class="amount">₹ {{ book.cost }}</div>
+
+    <button id="rzp-button1">Pay Securely with Razorpay</button>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ RAZORPAY_KEY_ID }}", // Your Razorpay key
+        "amount": {{ data.amount }},     // Amount in paise
+        "currency": "INR",
+        "name": "Bus Reservation System",
+        "description": "Secure Bus Ticket Booking",
+        "image": "https://example.com/your_logo", // Optional logo URL
+        "order_id": "{{ payment.id }}",
+        "callback_url": "http://127.0.0.1:8000/payment/success/",
+        "prefill": {
+            "name": "{{ request.user.username }}",
+            "email": "{{ request.user.email }}",
+            "contact": "",  // Optional: add phone if available
+        },
+        "notes": {
+            "address": "Bus Reservation Office"
+        },
+        "theme": {
+            "color": "#2ecc71"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+
+{% endblock %}

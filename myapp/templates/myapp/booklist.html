@@ -1,0 +1,190 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  body {
+    background: url("{% static 'mysite/images/seat.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .overlay {
+    background-color: rgba(255, 255, 255, 0.93);
+    padding: 50px;
+    border-radius: 15px;
+    margin-top: 40px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  }
+
+  h2, h4 {
+    font-weight: bold;
+    color: #0d6efd;
+  }
+
+  .booking-table thead {
+    background-color: #0d6efd;
+    color: white;
+  }
+
+  .booking-table td, .booking-table th {
+    vertical-align: middle;
+    font-size: 15px;
+  }
+
+  .status-confirmed {
+    color: #28a745;
+    font-weight: bold;
+  }
+
+  .status-cancelled {
+    color: #dc3545;
+    font-weight: bold;
+  }
+
+  .cancel-box {
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 12px;
+    background: #f1f5ff;
+    border-left: 5px solid #0d6efd;
+  }
+
+  .icon {
+    margin-right: 8px;
+  }
+
+  .table-icon {
+    color: #0d6efd;
+    font-size: 18px;
+  }
+</style>
+
+<div class="container">
+  <div class="overlay">
+
+    {% if msg %}
+      <div class="alert alert-info">{{ msg }}</div>
+    {% endif %}
+
+    <h2 class="mb-4"><i class="bi bi-list-ul icon"></i>Your Bus Bookings</h2>
+
+    <div class="table-responsive">
+      <table class="table table-striped booking-table">
+        <thead>
+          <tr>
+            <th><i class="bi bi-hash"></i> Booking ID</th>
+            <th><i class="bi bi-person"></i> User</th>
+            <th><i class="bi bi-bus-front"></i> Bus</th>
+            <th><i class="bi bi-geo-alt"></i> From</th>
+            <th><i class="bi bi-geo-fill"></i> To</th>
+            <th><i class="bi bi-people"></i> Seats</th>
+            <th><i class="bi bi-currency-rupee"></i> Price</th>
+            <th><i class="bi bi-calendar"></i> Date</th>
+            <th><i class="bi bi-clock"></i> Time</th>
+            <th><i class="bi bi-check2-circle"></i> Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in book_list %}
+            <tr>
+              <td>{{ row.id }}</td>
+              <td>{{ row.name }}</td>
+              <td>{{ row.bus_name }}</td>
+              <td>{{ row.source }}</td>
+              <td>{{ row.dest }}</td>
+              <td>{{ row.nos }}</td>
+              <td>₹{{ row.price }}</td>
+              <td>{{ row.date }}</td>
+              <td>{{ row.time }}</td>
+              <td>
+                {% if row.status == "CANCELLED" %}
+                  <span class="status-cancelled"><i class="bi bi-x-circle"></i> Cancelled</span>
+                {% else %}
+                  <span class="status-confirmed"><i class="bi bi-check-circle"></i> Confirmed</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="10" class="text-center text-muted">No bookings found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Cancel Form -->
+    <div class="cancel-box">
+      <h4><i class="bi bi-x-square icon"></i>Cancel a Booking</h4>
+      <form id="cancelForm" action="{% url 'cancellings'  %}" method="post">
+        {% csrf_token %}
+        <div class="row g-3 align-items-center">
+          <div class="col-md-7">
+            <label for="bus_id" class="form-label">Select Booking</label>
+            <select name="bus_id" class="form-select" id="bus_id" required>
+              <option value="">-- Choose Booking --</option>
+              {% for booking in book_list %}
+                {% if booking.status != 'CANCELLED' %}
+                  <option value="{{ booking.id }}">
+                    {{ booking.bus_name }} | {{ booking.source }} → {{ booking.dest }} | Seats: {{ booking.nos }} | ₹{{ booking.price }} | {{ booking.date }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-5 d-flex align-items-end">
+            <!-- Cancel Button with JS -->
+            <button type="button" class="btn btn-danger w-100" onclick="showConfirmModal()">
+              <i class="bi bi-trash"></i> Cancel Booking
+            </button>
+          </div>
+        </div>
+
+        {% if error %}
+          <div class="text-danger mt-3">{{ error }}</div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Confirming Cancellation -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="confirmModalLabel">Confirm Cancellation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to cancel this bus booking?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Keep Booking</button>
+        <button type="button" class="btn btn-danger" onclick="submitCancelForm()">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showConfirmModal() {
+    const selected = document.getElementById('bus_id').value;
+    if (!selected) {
+      alert('Please select a booking to cancel.');
+      return;
+    }
+
+    const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+    confirmModal.show();
+  }
+
+  function submitCancelForm() {
+    document.getElementById('cancelForm').submit();
+  }
+</script>
+
+{% endblock %}

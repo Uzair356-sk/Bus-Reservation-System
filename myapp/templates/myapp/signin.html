@@ -1,0 +1,122 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+  body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+        url('{% static "mysite/images/signin.jpg" %}') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+    }
+  .login-wrapper {
+    display: flex;
+    max-width: 900px;
+    margin: 60px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .login-left {
+    background-color: #f6f6f6;
+    padding: 40px;
+    width: 50%;
+  }
+
+  .login-left h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .login-left ul {
+    padding-left: 20px;
+  }
+
+  .login-left li {
+    list-style: none;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .login-left li::before {
+    content: '●';
+    position: absolute;
+    left: 0;
+    color: gray;
+    font-size: 18px;
+  }
+
+  .login-left img {
+    margin-top: 40px;
+    max-width: 100%;
+  }
+
+  .login-right {
+    padding: 40px 30px;
+    width: 50%;
+  }
+
+
+  .terms {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+  }
+
+  .terms a {
+    color: #007bff;
+    text-decoration: none;
+  }
+</style>
+
+<div class="login-wrapper">
+
+  
+  <div class="login-left">
+    <h3><span style="color: #e60012">ABC Transit </span><span style="color: #000">Incorporated</span></h3>
+    <ul>
+      <li><strong>ABC Assured</strong><br>Protect yourself with up to 150% refund in case of service cancellation</li>
+      <li><strong>Free cancellation</strong><br>Protect yourself from cancellation charges and get 100% refund</li>
+      <li><strong>4.8* Rating</strong><br>India's highest rated bus platform<br>Trusted by 5+ Crore Happy Customers</li>
+    </ul>
+      <img src="https://static.abhibus.com/web/media/branding/Login.svg" class="illustration" alt="Ticket Booking Illustration">
+  </div>
+
+  
+  <div class="login-right">
+    <h4 class="mb-4">Login to ABC Transit Incorporated</h4>
+    <form action="{% url 'signin' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Enter Username to Continue</label>
+        <input name="name" type="text" class="form-control" placeholder="Username" required>
+      </div>
+
+      <div class="form-group">
+        <label>Enter Password</label>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
+      </div>
+
+      <button type="submit" class="btn btn-secondary btn-block mt-3">Login</button>
+    </form>
+
+    
+
+    
+
+    <div class="terms">
+      By logging in, I understand & agree to ABC Transit <br>
+      
+    </div>
+
+    <p class="text-danger">{{ error }}</p>
+  </div>
+
+</div>
+
+{% endblock %}

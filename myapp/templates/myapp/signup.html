@@ -1,0 +1,127 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+        url('{% static "mysite/images/signin.jpg" %}') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+  .signup-wrapper {
+    display: flex;
+    max-width: 950px;
+    margin: 60px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .signup-left {
+    background-color: #f6f6f6;
+    padding: 40px;
+    width: 50%;
+  }
+
+  .signup-left h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .signup-left ul {
+    padding-left: 20px;
+  }
+
+  .signup-left li {
+    list-style: none;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .signup-left li::before {
+    content: '●';
+    position: absolute;
+    left: 0;
+    color: gray;
+    font-size: 18px;
+  }
+
+  .signup-left img {
+    margin-top: 40px;
+    max-width: 100%;
+  }
+
+  .signup-right {
+    padding: 40px 30px;
+    width: 50%;
+  }
+
+
+  .terms {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+  }
+
+  .terms a {
+    color: #007bff;
+    text-decoration: none;
+  }
+</style>
+
+<div class="signup-wrapper">
+
+
+  <div class="signup-left">
+    <h3><span style="color: #e60012">ABC Transit </span><span style="color: #000">Incorporated</span></h3>
+    <ul>
+      <li><strong>ABC Assured</strong><br>Up to 150% refund if service is canceled</li>
+      <li><strong>Free Cancellation</strong><br>100% refund if you cancel</li>
+      <li><strong>4.8* Rating</strong><br>Rated by 5+ Crore happy users</li>
+    </ul>
+      <img src="https://static.abhibus.com/web/media/branding/Login.svg" class="illustration" alt="Ticket Booking Illustration">
+  </div>
+
+  
+  <div class="signup-right">
+    <h4 class="mb-4">Create Your ABC Transit Incorporated Account</h4>
+    <form action="{% url 'signup' %}" method="post">
+      {% csrf_token %}
+
+      <div class="form-group mb-3">
+        <label>Username</label>
+        <input name="username" type="text" class="form-control" placeholder="Enter username" required>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Email</label>
+        <input name="email" type="email" class="form-control" placeholder="Enter email" required>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Password</label>
+        <input name="password" type="password" class="form-control" placeholder="Create password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+    </form>
+
+    
+
+    <div class="terms">
+      By signing up, I agree to ABC Transit <br>
+  
+    </div>
+
+    <p class="text-danger mt-2">{{ error }}</p>
+  </div>
+
+</div>
+
+{% endblock %}

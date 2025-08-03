@@ -1,0 +1,644 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Reservation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CDN (for responsive design) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            position: relative;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero h1 {
+            background-color: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .features {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Welcome to the Bus Reservation System</h1>
+</div>
+
+<br>
+
+ <!-- Offers Section -->
+  <div class="offers text-center">
+    <div class="container">
+      <h2>Best Offers</h2>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <img src="https://static.abhibus.com/offerbanners/Jan2025/29/1738139341-720x360(2).webp" class="img-fluid rounded" alt="Offer 1">
+        </div>
+        <div class="col-md-4">
+          <img src="https://static.abhibus.com/offerbanners/May2025/26/1748231582-TataNeuCOfundedOffer(720x360)copy.webp" class="img-fluid rounded" alt="Offer 2">
+        </div>
+        <div class="col-md-4">
+          <img src="https://static.abhibus.com/offerbanners/Jul2024/03/1719986415-720x360.webp" class="img-fluid rounded" alt="Offer 3">
+        </div>
+        <div class="col-md-4">
+          <img src="https://static.abhibus.com/offerbanners/Oct2024/07/1728295367-720x360.webp" class="img-fluid rounded" alt="Offer 3">
+        </div>
+        <div class="col-md-4">
+          <img src="https://static.abhibus.com/offerbanners/Jul2025/01/1751363938-KSRTC720x360(1).webp" class="img-fluid rounded" alt="Offer 3">
+        </div>
+        <div class="col-md-4">
+          <img src="https://static.abhibus.com/offerbanners/Jun2024/04/1717450497-hrtc-bus-offer.webp" class="img-fluid rounded" alt="Offer 3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <title>Why Choose AbhiBus</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+
+    .why-abhibus-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+
+    .why-abhibus-section h2 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .why-abhibus-section p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .feature-card {
+      flex: 1 1 250px;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-card img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .feature-content h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .feature-content p {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Backgrounds for each box */
+    .bg-green { background-color: #ecfdf5; }
+    .bg-blue { background-color: #f0f7ff; }
+    .bg-orange { background-color: #fff4e5; }
+    .bg-purple { background-color: #f9f0ff; }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="why-abhibus-section">
+    <h2>Why Choose ABC Transit Incorporated for Bus Ticket Booking ?</h2>
+    <p>ABC Transit Incorporated is India’s fastest growing online ticket booking platform. ABC Transit Incorporated is the official ticketing partner of several State Road Transport Corporation (SRTC) operators and over 4000+ private bus partners covering more than 3,50,000 bus routes</p>
+
+    <div class="features">
+      <div class="feature-card bg-green">
+        <img src="https://static.abhibus.com/web/home-route.svg" alt="Bus Routes Icon">
+        <div class="feature-content">
+          <h3>3,50,000+ Bus Routes</h3>
+          <p>offering unparalleled choices for your travel needs</p>
+        </div>
+      </div>
+
+      <div class="feature-card bg-blue">
+        <img src="https://static.abhibus.com/web/bus-partner.svg" alt="Bus Partners Icon">
+        <div class="feature-content">
+          <h3>4000+ Bus Partners</h3>
+          <p>ranging from State RTCs to private partners</p>
+        </div>
+      </div>
+
+      <div class="feature-card bg-orange">
+        <img src="https://static.abhibus.com/web/home-ticket.svg" alt="Fast Booking Icon">
+        <div class="feature-content">
+          <h3>Fastest Bus Booking</h3>
+          <p>swift and seamless bus ticket booking experience</p>
+        </div>
+      </div>
+
+      <div class="feature-card bg-purple">
+        <img src="https://static.abhibus.com/web/24-hour-service.svg" alt="Customer Support Icon">
+        <div class="feature-content">
+          <h3>24/7 Customer Support</h3>
+          <p>available for all your booking needs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>Online Bus Booking Services | Bus Reservation System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-weight: 600;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .section-content {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .bus-types ul {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+      list-style: disc inside;
+      padding-left: 0;
+    }
+    .illustration {
+      max-width: 100%;
+    }
+    #slider div{
+        width: 20vw;
+    }
+  </style>
+</head>
+
+
+<!-- Book SRTC Buses Section -->
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h4>Book Bus Tickets at ABC Transit Incorporated</h4>
+      <p class="text-muted">From SRTC (State Road Transport Corporation)</p>
+    </div>
+<a href="{% url 'srtc_directory' %}" class="text-danger fw-semibold">View All SRTCs</a>
+  </div>
+
+  <div class="row flex-nowrap overflow-auto container-fluid" style="gap: 20px; scroll-snap-type: x mandatory;" id="slider">
+    <!-- Card 1 -->
+    <div class="card shadow-sm border-0 text-white" style="min-width: 280px; position: relative;">
+      <img  src="https://static.abhibus.com/web/APSRTC.webp" class="card-img" alt="APSRTC">
+      <div class="card-img-overlay d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+        <h5 class="card-title">APSRTC</h5>
+        <p class="card-text">Andhra Pradesh State Road Transport Corporation</p>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-danger btn-sm w-50">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card shadow-sm border-0 text-white" style="min-width: 280px;">
+      <img  src="https://static.abhibus.com/web/TGSRTC.webp" class="card-img" alt="TGSRTC">
+      <div class="card-img-overlay d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+        <h5 class="card-title">TGSRTC</h5>
+        <p class="card-text">Telangana State Road Transport Corporation</p>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-danger btn-sm w-50">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card shadow-sm border-0 text-white" style="min-width: 280px;">
+      <img src="https://static.abhibus.com/web/KERALARTC.webp" class="card-img" alt="Kerala RTC">
+      <div class="card-img-overlay d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+        <h5 class="card-title">Kerala RTC</h5>
+        <p class="card-text">Kerala Road Transport Corporation</p>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-danger btn-sm w-50">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card shadow-sm border-0 text-white" style="min-width: 280px;">
+      <img src="https://static.abhibus.com/web/GSRTC.webp" class="card-img" alt="GSRTC">
+      <div class="card-img-overlay d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+        <h5 class="card-title">GSRTC</h5>
+        <p class="card-text">Gujarat State Road Transport Corporation</p>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-danger btn-sm w-50">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card shadow-sm border-0 text-white" style="min-width: 280px;">
+      <img src="https://static.abhibus.com/web/RSRTC.webp" class="card-img" alt="RSRTC">
+      <div class="card-img-overlay d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+        <h5 class="card-title">RSRTC</h5>
+        <p class="card-text">Rajasthan State Road Transport Corporation</p>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-danger btn-sm w-50">Book Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Online Bus Booking Services Section -->
+<div class="container section">
+  <div class="row align-items-center">
+    <div class="col-md-7">
+      <h2 class="section-title">Online Bus Booking Services</h2>
+      <div class="section-content">
+        <p>ABC Transit Incorporated is India’s leading online bus ticket booking service provider. Check out budget friendly offers and save big with discount coupons to book bus tickets at the lowest price with us. You can check the bus schedules, compare prices, and find all the information you need to plan an ideal and comfortable bus or train journey.</p>
+
+        <p>ABC Transit Incorporated has simplified the online bus booking process for your travel planning. In case you need to cancel the ticket or change the dates, You can save both time and money by choosing ABC Cash as a refund option which can be used instantly. Book now!!!</p>
+
+        <p>Browse through all your bus route options, and use our advanced smart filters to ensure a reliable and comfortable journey, tailored to your scheduled travel plans.</p>
+      </div>
+    </div>
+    <div class="col-md-5 text-center">
+      <img src="https://static.abhibus.com/web/online-bus-booking-service.png" class="illustration" alt="Bus Booking Illustration">
+    </div>
+  </div>
+</div>
+
+<!-- Online Bus Ticket Booking at Lowest Price -->
+<div class="container section">
+  <div class="row align-items-center">
+    <div class="col-md-7 order-md-2">
+      <h2 class="section-title">Online Bus Ticket Booking at Lowest Price</h2>
+      <div class="section-content">
+        <p>With ABC Transit Incorporated, travellers can book bus tickets online at the lowest ticket fares. Travellers can choose their favorite bus for online bus booking. ABC Transit Incorporated is the right place for reserving bus tickets as you will find a wide range of Private buses and SRTC (State Road Transport Corporation) buses are available for bus booking online on ABC Transit Incorporated.</p>
+
+        <p>Below, you will find various types of buses available to book bus tickets on ABC Transit Incorporated at the lowest fare for bus ticket booking:</p>
+
+        <div class="bus-types">
+          <ul>
+            <li>AC Buses</li>
+            <li>Non AC Buses</li>
+            <li>Ordinary Buses</li>
+            <li>Mini Buses</li>
+            <li>Super Luxury (Non-AC Seater)</li>
+            <li>Volvo AC Buses</li>
+            <li>Sleeper AC Buses</li>
+            <li>Sleeper Buses</li>
+            <li>Deluxe Buses</li>
+            <li>Sleeper Cum Seater AC</li>
+            <li>Double Decker Buses</li>
+            <li>Mercedes buses</li>
+            <li>Non-Mercedes buses</li>
+            <li>Electric Buses</li>
+            <li>Express Buses</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 order-md-1 text-center">
+      <img src="https://static.abhibus.com/web/online-bus-ticket-booking-a-l-p.png" class="illustration" alt="Ticket Booking Illustration">
+    </div>
+  </div>
+</div>
+
+
+
+<section class="container my-5">
+  <!-- Section 1 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-7">
+      <h3 class="fw-bold mb-3">Last Hour Ticket Booking</h3>
+      <p>
+        Most of the online bus bookings are unplanned, with only 32% of the people reserving tickets on the day of travel and 24% one day before the journey.
+        Keeping this in mind, ABC Transit Incorporated has ensured buses are available round the clock 24/7 by listing all the scheduled buses.
+        At times you could be the lucky one because many of our bus partners provide last-minute deals that offer up to 25% discount on the bus ticket fare.
+        You can experience flexibility in both bus timings and price choices when booking tickets on ABC Transit Incorporated.
+      </p>
+      <p>
+        ABC Transit Incorporated provides the quickest way to find last-minute online bus bookings, allowing you to compare prices, operator schedules, and more.
+        Travellers can enjoy the affordability and convenience that comes with thousands of trusted bus operators who have partnered with us in India.
+        You can avail last-minute ticket booking options and choose from multiple pick-up and drop-off locations on ABC Transit Incorporated.com.
+      </p>
+    </div>
+    <div class="col-md-5 text-center">
+      <img src="https://static.abhibus.com/web/last-hour-ticket-booking.png" class="illustration" alt="Ticket Booking Illustration">
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="row align-items-center">
+    <div class="col-md-5 text-center mb-4 mb-md-0">
+      <img src="https://static.abhibus.com/web/best-way-to-book-ticket.png" class="illustration" alt="Ticket Booking Illustration">
+    </div>
+    <div class="col-md-7">
+      <h3 class="fw-bold mb-3">The Best Way to Book Bus Ticket</h3>
+      <p>
+        Do you want to know the best way to book tickets online securely and how to book tickets in advance?
+        With us, you can check the provided amenities, compare booking fares, check bus time & schedule on your chosen route,
+        explore additional facilities, and more. ABC Transit Incorporated offers an affordable and cost-effective online travel booking experience.
+      </p>
+      <p>
+        With ABC Transit Incorporated, online bus ticket booking became easier.
+        Simply enter your journey details in our search bar (departure city, destination city, and travel date),
+        click the search button, and you will receive a list of available bus operators for online ticket booking.
+        Then, select the bus that best suits your travel needs and securely complete your booking online on ABCTransitIncorporated.com.
+      </p>
+      <p>
+        We recommend booking your tickets at least 2 - 3 days in advance so that you can reserve bus seats as per your preference and get the best-discounted price on your booking.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+{% load static %}
+<section class="container my-5 text-center">
+    <h4 class="fw-bold mb-4">Top Private Travels</h4>
+    <div class="row justify-content-center align-items-center g-4">
+        <div class="col-6 col-sm-4 col-md-2">
+      <img src="https://static.abhibus.com/web/OrangeTravels.png" class="illustration" alt="Ticket Booking Illustration">
+        </div>
+        <div class="col-6 col-sm-4 col-md-2">
+      <img src="https://static.abhibus.com/web/Dreamline.png" class="illustration" alt="Ticket Booking Illustration">
+        </div>
+        <div class="col-6 col-sm-4 col-md-2">
+      <img src="https://static.abhibus.com/web/Dreamline.png" class="illustration" alt="Ticket Booking Illustration">
+        </div>
+        <div class="col-6 col-sm-4 col-md-2">
+      <img src="https://static.abhibus.com/web/RavinaTravels.png" class="illustration" alt="Ticket Booking Illustration">
+        </div>
+        <div class="col-6 col-sm-4 col-md-2">
+      <img src="https://static.abhibus.com/web/SrTravels.png" class="illustration" alt="Ticket Booking Illustration">
+        </div>
+    </div>
+</section>
+
+
+
+<section class="container my-5">
+  <h3 class="fw-bold">Popular Bus Routes</h3>
+  <p class="text-muted mb-4">
+    You can check popular bus routes, compare bus schedules, timings and their prices to book bus tickets online. 
+    ABC Transit Incorporated offers you low-cost bus fares for your travel across India. For a seamless travel experience, book bus tickets online with ABC Transit Incorporated for your bus journey.
+  </p>
+
+  <div class="row gy-4">
+    <!-- Route 1 -->
+    <div class="col-md-6">
+      <div class="d-flex justify-content-between align-items-center p-3 border rounded shadow-sm">
+        <div class="d-flex align-items-center">
+      <img src="https://static.abhibus.com/web/hyderabad.png" class="illustration" alt="Ticket Booking Illustration">
+          <strong>Bangalore → Hyderabad</strong>
+        </div>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-dark rounded-pill px-4">View Buses</a>
+      </div>
+    </div>
+
+    <!-- Route 2 -->
+    <div class="col-md-6">
+      <div class="d-flex justify-content-between align-items-center p-3 border rounded shadow-sm">
+        <div class="d-flex align-items-center">
+      <img src="https://static.abhibus.com/web/Tirupathi.png" class="illustration" alt="Ticket Booking Illustration">
+          <strong>Hyderabad → Vijayawada</strong>
+        </div>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-dark rounded-pill px-4">View Buses</a>
+      </div>
+    </div>
+
+    <!-- Route 3 -->
+    <div class="col-md-6">
+      <div class="d-flex justify-content-between align-items-center p-3 border rounded shadow-sm">
+        <div class="d-flex align-items-center">
+      <img src="https://static.abhibus.com/web/chennai.png" class="illustration" alt="Ticket Booking Illustration">
+          <strong>Bangalore → Chennai</strong>
+        </div>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-dark rounded-pill px-4">View Buses</a>
+      </div>
+    </div>
+
+    <!-- Route 4 -->
+    <div class="col-md-6">
+      <div class="d-flex justify-content-between align-items-center p-3 border rounded shadow-sm">
+        <div class="d-flex align-items-center">
+      <img src="https://static.abhibus.com/web/chennai.png" class="illustration" alt="Ticket Booking Illustration">
+          <strong>Hyderabad → Visakhapatnam</strong>
+        </div>
+        <a href="{% url 'findbus' %}" class="btn btn-outline-dark rounded-pill px-4">View Buses</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Bus Live Location</title>
+  <style>
+    .bus-tracking-section {
+      background: linear-gradient(135deg, #a46df6, #c4a1e7);
+      color: white;
+      border-radius: 12px;
+      padding: 40px 20px;
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .bus-tracking-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .bus-tracking-text {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .bus-tracking-text h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .bus-tracking-text p {
+      font-size: 1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .bus-tracking-text a {
+      color: #00cfff;
+      text-decoration: underline;
+    }
+
+    .bus-tracking-image {
+      flex: 1;
+      text-align: center;
+      min-width: 300px;
+      padding: 20px;
+    }
+
+    .bus-tracking-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .bus-tracking-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Your existing homepage content above -->
+
+  <section class="bus-tracking-section">
+    <div class="bus-tracking-container" style="background-image: url('/static/mysite/images/WhatsApp Image 2025-07-07 at 5.33.08 PM.jpeg'); background-size:contain; background-repeat: no-repeat; background-position-y: center;  ">
+      <div class="bus-tracking-text">
+        <h1>Track Your Bus Live Location</h1>
+        <p>
+          ABC Transit Incorporated is solving the biggest concern while boarding a bus by providing a tracking option that provides the live location of the bus. This option keeps passengers informed about the bus live location so that passengers can plan their boarding accordingly. ABC Transit Incorporated live bus tracking system allows you to track your bus status by entering your ABC Transit Incorporated Booking ID and either Email ID or Mobile Number details in the input field box. It's a simple, fast, and secure way to manage, track your bus live location on Google Maps with 
+          <a href="#"> live bus tracking</a> technology. Find scheduled bus departure and arrival times of your bus route, the distance between cities and more information.
+        </p>
+        <p>
+          Booking Bus tickets online in advance and reserving your seats also gives you benefits on early bird discount offers and help you to plan a hassle-free bus journey. Book bus tickets now and enjoy the live bus tracking status online with us.
+        </p>
+      </div>
+      <!-- <div class="bus-tracking-image">
+        <img src="" alt="Bus tracking illustration" />
+      </div> -->
+    </div>
+  </section>
+
+  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About ABC Transit Incorporated </title>
+  <style>
+    .about-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+
+    .about-section h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .about-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-section a {
+      color: #e53935;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .about-section a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="about-section">
+    <h2>About ABC Transit Incorporated</h2>
+    <p>
+      ABC Transit Incorporated, over the years, has strived to deliver easy booking solutions to its customers. Our continued efforts have resulted in ABC Transit Incorporated becoming one of the leading and top-rated bus booking platforms in India for various Bus services. We have a strong presence with a ticket inventory from over 4000 bus partners and 350000 route options on our app and website.
+    </p>
+    <p>
+      Founded in the year 2008, ABC Transit Incorporated is a pioneer in providing end-to-end software and other value-added solutions such as e-ticketing systems, fleet management solutions, vehicle tracking systems, passenger information systems, and logistics management backed by a 24x7 customer support center. The company also provides technology solutions to more than 300 large private bus partners in India, 5 state transport corporations, and 2 international bus partners.
+    </p>
+    <a href="{% url 'about_us' %}">Know more about ABC Transit Incorporated</a>
+  </section>
+
+</body>
+</html>
+
+
+
+
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+<!-- Footer -->
+<footer class="text-center mt-5 py-4 bg-dark text-white">
+    &copy; 2025 Bus Reservation System. All rights reserved.
+</footer>
+
+</body>
+</html>
+
+{% endblock %}

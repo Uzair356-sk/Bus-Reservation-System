@@ -1,0 +1,154 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  body {
+    background: url("{% static 'mysite/images/bus-bg.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .booking-container {
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 40px;
+    margin-top: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .booking-container h2,
+  .booking-container h3 {
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .table thead {
+    background: linear-gradient(90deg, #007bff, #6610f2);
+    color: #fff;
+    text-align: center;
+  }
+
+  .table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .form-section {
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+
+  .btn-book {
+    background: linear-gradient(to right, #28a745, #218838);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+  }
+
+  .btn-book:hover {
+    background: linear-gradient(to right, #218838, #1e7e34);
+  }
+
+  .icon {
+    margin-right: 6px;
+  }
+
+  .error-message {
+    margin-top: 20px;
+    color: red;
+    font-weight: 500;
+  }
+</style>
+
+<div class="container booking-container">
+
+  {% if msg %}
+    <div class="alert alert-success text-center">
+      <i class="bi bi-check-circle icon"></i>{{ msg }}
+    </div>
+  {% endif %}
+
+  <!-- Bus List Table -->
+  <h2><i class="bi bi-bus-front icon"></i>Available Buses</h2>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th><i class="bi bi-truck-front icon"></i>Name</th>
+          <th><i class="bi bi-geo-alt icon"></i>Source</th>
+          <th><i class="bi bi-flag icon"></i>Destination</th>
+          <th><i class="bi bi-people icon"></i>Seats</th>
+          <th><i class="bi bi-person-x icon"></i>Remaining</th>
+          <th><i class="bi bi-currency-rupee icon"></i>Price</th>
+          <th><i class="bi bi-calendar-date icon"></i>Date</th>
+          <th><i class="bi bi-clock icon"></i>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in bus_list %}
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ row.bus_name }}</td>
+          <td>{{ row.source }}</td>
+          <td>{{ row.dest }}</td>
+          <td>{{ row.nos }}</td>
+          <td>{{ row.rem }}</td>
+          <td>₹{{ row.price }}</td>
+          <td>{{ row.date }}</td>
+          <td>{{ row.time }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Booking Form -->
+  <div class="form-section">
+    <h3><i class="bi bi-pencil-square icon"></i>Book Your Seat</h3>
+    <form action="{% url 'bookings' %}" method="post">
+      {% csrf_token %}
+
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Bus ID</label>
+        <div class="col-sm-6">
+          <input type="number" name="bus_id" class="form-control" required placeholder="Enter Bus ID">
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <label class="col-sm-2 col-form-label">Number of Seats</label>
+        <div class="col-sm-6">
+          <input type="number" name="no_seats" class="form-control" required placeholder="Enter Number of Seats">
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-book">
+          <i class="bi bi-ticket-detailed icon"></i>Book Now
+        </button>
+      </div>
+
+      {% if error %}
+        <div class="error-message text-center">{{ error }}</div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

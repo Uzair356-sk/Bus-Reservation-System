@@ -1,0 +1,53 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+        url('{% static "mysite/images/signin.jpg" %}') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .success-container {
+        margin-top: 100px;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .success-icon {
+        width: 80px;
+        margin-bottom: 20px;
+    }
+    .btn-signout {
+        padding: 10px 25px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 success-container">
+            <!-- Success Icon -->
+            <img src="{% static 'mysite/images/success.jpg' %}" alt="Success" class="success-icon">
+            
+            <!-- Greeting Message -->
+            <h2>Welcome, {{ user }}!</h2>
+            <p>You have successfully logged in.</p>
+
+            <!-- Sign Out Form -->
+            <form action="{% url 'signout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-signout mt-3">
+                    Sign Out
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
